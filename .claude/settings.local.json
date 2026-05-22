@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\Tyler Upsell\\\\Documents\\\\GitHub\\\\insulflo2\\\\index.html\")",
+      "Bash(git status *)"
+    ]
+  }
+}
