@@ -942,7 +942,8 @@ section { padding: 90px 0; }
 
 .page-banner-img--family {
   max-height: 620px;
-  object-position: center 28%;
+  object-fit: contain;
+  object-position: center;
 }
 
 /* Inline figure inside article body */
@@ -1163,7 +1164,7 @@ section { padding: 90px 0; }
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
 
   .page-banner-img { max-height: 320px; }
-  .page-banner-img--family { max-height: 420px; }
+  .page-banner-img--family { max-height: 480px; }
 }
 
 @media (max-width: 720px) {
