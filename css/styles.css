@@ -320,11 +320,11 @@ a:hover { color: var(--accent); }
 /* Hero — full-bleed background photo with dark overlay */
 .hero {
   position: relative;
-  min-height: 600px;
+  min-height: 720px;
   padding: 160px 0 80px;
   background-image: url('../images/truck-on-yard-with-trailer.jpg');
   background-size: cover;
-  background-position: center top;
+  background-position: center bottom;
   background-repeat: no-repeat;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
@@ -406,39 +406,7 @@ a:hover { color: var(--accent); }
   gap: 14px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 48px;
-}
-
-.hero-trust {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: 640px;
-  margin: 0 auto;
-  padding-top: 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.trust-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 4px;
-}
-
-.trust-item strong {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--accent-light);
-  line-height: 1;
-}
-
-.trust-item span {
-  font-size: 0.78rem;
-  color: var(--text);
-  opacity: 0.9;
-  letter-spacing: 0.04em;
+  margin-bottom: 0;
 }
 
 /* Section base */
@@ -967,9 +935,14 @@ section { padding: 90px 0; }
   width: 100%;
   max-height: 560px;
   object-fit: cover;
-  object-position: center 60%;
+  object-position: center;
   border-radius: var(--radius-lg);
   display: block;
+}
+
+.page-banner-img--family {
+  max-height: 620px;
+  object-position: center 28%;
 }
 
 /* Inline figure inside article body */
@@ -1169,7 +1142,7 @@ section { padding: 90px 0; }
 
 /* Mobile */
 @media (max-width: 960px) {
-  .hero { min-height: 500px; padding: 120px 0 60px; }
+  .hero { min-height: 540px; padding: 120px 0 60px; }
 
   .article .container,
   .contact-grid {
@@ -1187,11 +1160,10 @@ section { padding: 90px 0; }
     gap: 36px;
   }
 
-  .hero-trust { gap: 12px; }
-
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
 
   .page-banner-img { max-height: 320px; }
+  .page-banner-img--family { max-height: 420px; }
 }
 
 @media (max-width: 720px) {
@@ -1239,11 +1211,6 @@ section { padding: 90px 0; }
 
   .logo img { height: 44px; }
 
-  .hero-trust {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
   .inline-figure { width: 100%; margin: 28px 0; }
 
   .form-row { grid-template-columns: 1fr; }
@@ -1264,9 +1231,4 @@ section { padding: 90px 0; }
 
 @media (max-width: 540px) {
   .portfolio-grid { grid-template-columns: 1fr; }
-
-  .hero-trust {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
 }
