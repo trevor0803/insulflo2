@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://insulfloenergy.com/sitemap.xml
+Sitemap: https://insulflo.com/sitemap.xml
