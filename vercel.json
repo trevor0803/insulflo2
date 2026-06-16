@@ -1,4 +1,22 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/about-us", "destination": "/about", "permanent": true },
+    { "source": "/about-us/", "destination": "/about", "permanent": true },
+    { "source": "/spray-foam-insulation", "destination": "/spray-foam", "permanent": true },
+    { "source": "/spray-foam-insulation/", "destination": "/spray-foam", "permanent": true },
+    { "source": "/blown-in-insulation", "destination": "/blown-in", "permanent": true },
+    { "source": "/blown-in-insulation/", "destination": "/blown-in", "permanent": true },
+    { "source": "/insulation-removal", "destination": "/removal", "permanent": true },
+    { "source": "/insulation-removal/", "destination": "/removal", "permanent": true },
+    { "source": "/window-installation", "destination": "/windows", "permanent": true },
+    { "source": "/window-installation/", "destination": "/windows", "permanent": true },
+    { "source": "/storm-damage-repair", "destination": "/storm-damage", "permanent": true },
+    { "source": "/storm-damage-repair/", "destination": "/storm-damage", "permanent": true },
+    { "source": "/services", "destination": "/", "permanent": true },
+    { "source": "/services/", "destination": "/", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact", "permanent": true },
+    { "source": "/contact-us/", "destination": "/contact", "permanent": true }
+  ]
 }
