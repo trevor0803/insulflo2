@@ -20,6 +20,6 @@
     { "source": "/contact-us/", "destination": "/contact", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/googleee6db442536ab821.html", "destination": "/googleee6db442536ab821.txt" }
+    { "source": "/googleee6db442536ab821", "destination": "/googleee6db442536ab821.txt" }
   ]
 }
