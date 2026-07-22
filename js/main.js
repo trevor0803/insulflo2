@@ -64,17 +64,46 @@
     revealEls.forEach((el) => el.classList.add('visible'));
   }
 
-  // Contact form (frontend handler)
+  // Contact form → GoHighLevel (via /api/lead serverless function)
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     const status = contactForm.querySelector('.form-status');
-    contactForm.addEventListener('submit', (e) => {
-      const action = contactForm.getAttribute('action');
-      if (action && action !== '#' && action !== '') return;
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const val = (id) => (document.getElementById(id)?.value || '').trim();
+
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      status.classList.add('success');
-      status.textContent = "Thanks — your message is ready. Wire this form to Formspree (or similar) to start receiving inquiries.";
-      contactForm.reset();
+      status.classList.remove('success', 'error');
+
+      const payload = {
+        name: val('name'),
+        phone: val('phone'),
+        email: val('email'),
+        service: document.getElementById('service')?.value || '',
+        message: val('message'),
+      };
+
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        const r = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!r.ok) throw new Error('Request failed');
+        status.classList.add('success');
+        status.textContent = "Thanks! We got your request and will reach out the same business day.";
+        contactForm.reset();
+      } catch (err) {
+        status.classList.add('error');
+        status.textContent = "Sorry — something went wrong. Please call us at (863) 251-2991 and we'll help right away.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
     });
   }
 
