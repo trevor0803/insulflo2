@@ -1289,3 +1289,10 @@ section { padding: 90px 0; }
 @media (max-width: 560px) {
   .footer-social { flex-direction: column; align-items: flex-start; gap: 18px; }
 }
+
+.form-status.error {
+  display: block;
+  background: rgba(200, 70, 70, 0.1);
+  color: #c84646;
+  border-left: 3px solid #c84646;
+}
