@@ -123,6 +123,26 @@
   ]
 }
 </script>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6WED9902YR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6WED9902YR');
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        gtag('event', 'phone_call_click', { link_url: a.getAttribute('href') });
+      });
+    });
+    document.querySelectorAll('form').forEach(function (f) {
+      f.addEventListener('submit', function () {
+        gtag('event', 'generate_lead', { form_id: f.id || 'contact-form' });
+      });
+    });
+  });
+</script>
 </head>
 <body><div class="utility-bar">
   <div class="container">
