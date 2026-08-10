@@ -1,6 +1,11 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "headers": [
+    { "source": "/images/(.*)", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=2592000" }
+    ] }
+  ],
   "redirects": [
     { "source": "/about-us", "destination": "/about", "permanent": true },
     { "source": "/about-us/", "destination": "/about", "permanent": true },
@@ -17,7 +22,13 @@
     { "source": "/services", "destination": "/", "permanent": true },
     { "source": "/services/", "destination": "/", "permanent": true },
     { "source": "/contact-us", "destination": "/contact", "permanent": true },
-    { "source": "/contact-us/", "destination": "/contact", "permanent": true }
+    { "source": "/contact-us/", "destination": "/contact", "permanent": true },
+    { "source": "/our-portfolio", "destination": "/portfolio", "permanent": true },
+    { "source": "/our-portfolio/", "destination": "/portfolio", "permanent": true },
+    { "source": "/generators", "destination": "/", "permanent": true },
+    { "source": "/generators/", "destination": "/", "permanent": true },
+    { "source": "/solar-products", "destination": "/", "permanent": true },
+    { "source": "/solar-products/", "destination": "/", "permanent": true }
   ],
   "rewrites": [
     { "source": "/googleee6db442536ab821", "destination": "/googleee6db442536ab821.txt" }
