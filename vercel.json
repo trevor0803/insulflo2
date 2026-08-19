@@ -28,7 +28,15 @@
     { "source": "/generators", "destination": "/", "permanent": true },
     { "source": "/generators/", "destination": "/", "permanent": true },
     { "source": "/solar-products", "destination": "/", "permanent": true },
-    { "source": "/solar-products/", "destination": "/", "permanent": true }
+    { "source": "/solar-products/", "destination": "/", "permanent": true },
+    { "source": "/emp-protection", "destination": "/", "permanent": true },
+    { "source": "/emp-protection/", "destination": "/", "permanent": true },
+    { "source": "/attic-insulation", "destination": "/blown-in", "permanent": true },
+    { "source": "/attic-insulation/", "destination": "/blown-in", "permanent": true },
+    { "source": "/insulation-contractor", "destination": "/", "permanent": true },
+    { "source": "/insulation-contractor/", "destination": "/", "permanent": true },
+    { "source": "/metal-building-insulation", "destination": "/metal-buildings", "permanent": true },
+    { "source": "/pole-barn-insulation", "destination": "/metal-buildings", "permanent": true }
   ],
   "rewrites": [
     { "source": "/googleee6db442536ab821", "destination": "/googleee6db442536ab821.txt" }
