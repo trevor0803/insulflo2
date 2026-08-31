@@ -2,43 +2,162 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
-    { "source": "/images/(.*)", "headers": [
-      { "key": "Cache-Control", "value": "public, max-age=2592000" }
-    ] }
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    }
   ],
   "redirects": [
-    { "source": "/about-us", "destination": "/about", "permanent": true },
-    { "source": "/about-us/", "destination": "/about", "permanent": true },
-    { "source": "/spray-foam-insulation", "destination": "/spray-foam", "permanent": true },
-    { "source": "/spray-foam-insulation/", "destination": "/spray-foam", "permanent": true },
-    { "source": "/blown-in-insulation", "destination": "/blown-in", "permanent": true },
-    { "source": "/blown-in-insulation/", "destination": "/blown-in", "permanent": true },
-    { "source": "/insulation-removal", "destination": "/removal", "permanent": true },
-    { "source": "/insulation-removal/", "destination": "/removal", "permanent": true },
-    { "source": "/window-installation", "destination": "/windows", "permanent": true },
-    { "source": "/window-installation/", "destination": "/windows", "permanent": true },
-    { "source": "/storm-damage-repair", "destination": "/storm-damage", "permanent": true },
-    { "source": "/storm-damage-repair/", "destination": "/storm-damage", "permanent": true },
-    { "source": "/services", "destination": "/", "permanent": true },
-    { "source": "/services/", "destination": "/", "permanent": true },
-    { "source": "/contact-us", "destination": "/contact", "permanent": true },
-    { "source": "/contact-us/", "destination": "/contact", "permanent": true },
-    { "source": "/our-portfolio", "destination": "/portfolio", "permanent": true },
-    { "source": "/our-portfolio/", "destination": "/portfolio", "permanent": true },
-    { "source": "/generators", "destination": "/", "permanent": true },
-    { "source": "/generators/", "destination": "/", "permanent": true },
-    { "source": "/solar-products", "destination": "/", "permanent": true },
-    { "source": "/solar-products/", "destination": "/", "permanent": true },
-    { "source": "/emp-protection", "destination": "/", "permanent": true },
-    { "source": "/emp-protection/", "destination": "/", "permanent": true },
-    { "source": "/attic-insulation", "destination": "/blown-in", "permanent": true },
-    { "source": "/attic-insulation/", "destination": "/blown-in", "permanent": true },
-    { "source": "/insulation-contractor", "destination": "/", "permanent": true },
-    { "source": "/insulation-contractor/", "destination": "/", "permanent": true },
-    { "source": "/metal-building-insulation", "destination": "/metal-buildings", "permanent": true },
-    { "source": "/pole-barn-insulation", "destination": "/metal-buildings", "permanent": true }
+    {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/spray-foam-insulation",
+      "destination": "/spray-foam",
+      "permanent": true
+    },
+    {
+      "source": "/spray-foam-insulation/",
+      "destination": "/spray-foam",
+      "permanent": true
+    },
+    {
+      "source": "/blown-in-insulation",
+      "destination": "/blown-in",
+      "permanent": true
+    },
+    {
+      "source": "/blown-in-insulation/",
+      "destination": "/blown-in",
+      "permanent": true
+    },
+    {
+      "source": "/insulation-removal",
+      "destination": "/removal",
+      "permanent": true
+    },
+    {
+      "source": "/insulation-removal/",
+      "destination": "/removal",
+      "permanent": true
+    },
+    {
+      "source": "/window-installation",
+      "destination": "/windows",
+      "permanent": true
+    },
+    {
+      "source": "/window-installation/",
+      "destination": "/windows",
+      "permanent": true
+    },
+    {
+      "source": "/storm-damage-repair",
+      "destination": "/storm-damage",
+      "permanent": true
+    },
+    {
+      "source": "/storm-damage-repair/",
+      "destination": "/storm-damage",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/services/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/our-portfolio",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/our-portfolio/",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/generators",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/generators/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-products",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-products/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/emp-protection",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/emp-protection/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/insulation-contractor",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/insulation-contractor/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/metal-building-insulation",
+      "destination": "/metal-buildings",
+      "permanent": true
+    },
+    {
+      "source": "/pole-barn-insulation",
+      "destination": "/metal-buildings",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/googleee6db442536ab821", "destination": "/googleee6db442536ab821.txt" }
+    {
+      "source": "/googleee6db442536ab821",
+      "destination": "/googleee6db442536ab821.txt"
+    }
   ]
 }
