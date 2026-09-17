@@ -332,6 +332,12 @@ a:hover { color: var(--accent); }
   align-items: center;
 }
 
+/* Phones get a 1000px hero (91KB) rather than the 1600px one (202KB). The photo sits
+   under a heavy dark overlay, so the smaller file is indistinguishable on a handset. */
+@media (max-width: 700px) {
+  .hero { background-image: url('../images/truck-on-yard-with-trailer-mobile.webp'); }
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
