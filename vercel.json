@@ -104,36 +104,6 @@
       "permanent": true
     },
     {
-      "source": "/generators",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/generators/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/solar-products",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/solar-products/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/emp-protection",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/emp-protection/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/insulation-contractor",
       "destination": "/",
       "permanent": true
