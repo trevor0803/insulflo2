@@ -12,7 +12,8 @@
 <!-- Hero background is set in CSS, so the browser cannot discover it until the
      stylesheet is parsed. Preloading it moves the request ~850ms earlier and is
      the single biggest lever on mobile LCP. Update the href if the file changes. -->
-<link rel="preload" as="image" href="images/truck-on-yard-with-trailer.webp" fetchpriority="high">
+<link rel="preload" as="image" href="images/truck-on-yard-with-trailer-mobile.webp" fetchpriority="high" media="(max-width: 700px)">
+<link rel="preload" as="image" href="images/truck-on-yard-with-trailer.webp" fetchpriority="high" media="(min-width: 701px)">
 <meta property="og:title" content="Spray Foam &amp; Attic Insulation in Lakeland, FL | Insulflo">
 <meta property="og:description" content="Family-owned Lakeland insulation contractor rated 4.9 from 89 Google reviews. Spray foam, attic and blown-in insulation across Polk County. Free estimates.">
 <meta property="og:type" content="website">
