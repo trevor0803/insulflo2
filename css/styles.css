@@ -1336,3 +1336,85 @@ section { padding: 90px 0; }
 @media (max-width: 560px) {
   .blog-card { padding: 20px; }
 }
+
+/* Reviews — verbatim Google reviews */
+.reviews {
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.reviews-grid {
+  columns: 3;
+  column-gap: 20px;
+}
+
+.review-card {
+  break-inside: avoid;
+  margin: 0 0 20px;
+  padding: 28px 26px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.review-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-deep);
+}
+
+.review-stars {
+  display: block;
+  color: var(--accent);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+
+.review-card blockquote {
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.review-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.review-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.review-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.reviews-link {
+  text-align: center;
+  margin: 28px 0 0;
+}
+
+.reviews-link a {
+  color: var(--accent-light);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 960px) {
+  .reviews-grid { columns: 2; }
+}
+
+@media (max-width: 640px) {
+  .reviews-grid { columns: 1; }
+  .review-card { padding: 24px 22px; }
+}
