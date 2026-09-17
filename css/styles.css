@@ -322,7 +322,7 @@ a:hover { color: var(--accent); }
   position: relative;
   min-height: 720px;
   padding: 160px 0 80px;
-  background-image: url('../images/truck-on-yard-with-trailer.jpg');
+  background-image: url('../images/truck-on-yard-with-trailer.webp');
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
