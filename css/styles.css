@@ -860,6 +860,12 @@ section { padding: 90px 0; }
   border: 1px solid var(--line);
 }
 
+/* Between 961px and 1120px the header wraps to 110px tall, so a 100px offset
+   tucks the top of the sticky aside underneath it. */
+@media (min-width: 961px) and (max-width: 1120px) {
+  .article-aside { top: 113px; }
+}
+
 .article-aside h3 {
   font-size: 1.25rem;
   margin: 0 0 14px;
