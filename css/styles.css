@@ -957,11 +957,17 @@ section { padding: 90px 0; }
 
 .page-banner .container { max-width: 1240px; }
 
+/* The WebP sources are 800px wide. The old rule stretched them across a
+   1240px container and then sliced a 560px letterbox out of the middle, so
+   every service page opened on a soft, unreadable close-up. Capping at 820
+   means no upscaling, and a real 3:2 frame instead of a cropped band. */
 .page-banner-img {
   width: 100%;
-  max-height: 560px;
+  max-width: 820px;
+  margin: 0 auto;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
-  object-position: center;
+  object-position: 50% 45%;
   border-radius: var(--radius-lg);
   display: block;
 }
@@ -1195,7 +1201,7 @@ section { padding: 90px 0; }
 
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
 
-  .page-banner-img { max-height: 320px; }
+  .page-banner-img { aspect-ratio: 4 / 3; }
   .page-banner-img--family { max-height: 480px; }
 }
 
@@ -1623,18 +1629,23 @@ section { padding: 90px 0; }
   border: 1px solid var(--line);
 }
 
+/* The crew selfie is portrait (1600x2133) and the yard shot is landscape
+   (1600x1094). Equal columns forced the portrait into a landscape box and
+   cover() ate the heads. Weighting the columns to each photo's own ratio
+   means both fill a same-height row with almost nothing cropped. */
 .story-photos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.8fr 1.5fr;
   gap: 14px;
   margin: 36px auto 0;
-  max-width: 760px;
+  max-width: 860px;
 }
 
 .story-photos img {
   width: 100%;
-  height: 240px;
+  height: 340px;
   object-fit: cover;
+  object-position: 50% 35%;
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
 }
@@ -1650,6 +1661,7 @@ section { padding: 90px 0; }
   .proof-grid { grid-template-columns: repeat(2, 1fr); }
   .proof-grid img { height: 170px; }
   .story-photos { grid-template-columns: 1fr; }
+  .story-photos img { height: 300px; }
   .camo-seam { height: 44px; background-size: 380px auto; }
   .cta-band > .container, .site-footer > .container { padding: 28px 20px; }
 }
