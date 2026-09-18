@@ -1,3 +1,7 @@
+// Marks the document as scripted so the CSS can keep .reveal sections visible
+// until we know JS is actually running.
+document.documentElement.classList.add('js');
+
 /* Insulflo Energy Services — Site Scripts */
 (function () {
   'use strict';

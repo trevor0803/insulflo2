@@ -4,11 +4,11 @@
 
 :root {
   /* Brand palette — dark mode */
-  --bg: #0e1612;
-  --bg-elevated: #161f1a;
-  --bg-card: #1c2722;
+  --bg: #0b120e;
+  --bg-elevated: #16211b;
+  --bg-card: #1d2a22;
   --bg-card-hover: #243029;
-  --line: #2a3530;
+  --line: #2e3d34;
   --line-soft: #1f2a25;
 
   --text: #f0ebe0;
@@ -21,6 +21,20 @@
   --accent-deep: #b06a1f;
   --green: #6fa860;
   --green-light: #88c074;
+
+  /* Camo pattern tones — the three flat colours in the tile */
+  --camo-dark: #0b120e;
+  --camo-mid: #16211b;
+  --camo-light: #2e3d34;
+
+  /* Light sections. The site had no light ground before; these are the only
+     accent values that pass contrast on it. */
+  --paper: #f3f1ea;
+  --paper-ink: #141a16;      /* 15.6:1 on paper */
+  --paper-soft: #4c5651;     /*  6.7:1 on paper */
+  --paper-line: #dcd9cf;
+  --accent-ink: #a6551b;     /*  4.7:1 on paper — accent is 2.5:1, unusable */
+  --green-ink: #3c6e27;      /*  5.4:1 on paper */
 
   /* Type */
   --font-display: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -139,7 +153,7 @@ a:hover { color: var(--accent); }
   top: 0;
   z-index: 100;
   backdrop-filter: blur(12px);
-  background-color: rgba(14, 22, 18, 0.95);
+  background-color: rgba(11, 18, 14, 0.95);
 }
 
 .nav {
@@ -440,7 +454,7 @@ section { padding: 90px 0; }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
@@ -514,7 +528,7 @@ section { padding: 90px 0; }
 
 .why-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 4px;
   background: var(--line);
   border: 1px solid var(--line);
@@ -1145,13 +1159,19 @@ section { padding: 90px 0; }
 }
 
 /* Reveal animations */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+.reveal { opacity: 1; transform: none; }
+
+/* The hidden start state applies only when JS is running and motion is welcome,
+   so a cold load or a failed script still shows every section. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
 }
 
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.js .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* Mobile */
 @media (max-width: 960px) {
@@ -1429,4 +1449,207 @@ section { padding: 90px 0; }
 @media (max-width: 640px) {
   .reviews-grid { columns: 1; }
   .review-card { padding: 24px 22px; }
+}
+
+
+/* ==========================================================================
+   CAMO THEME — added 18 Sep 2026
+   Pattern is a seamless PNG tile repeated in CSS. No canvas, no JS, no layout
+   shift. background-size is the only dial: tight where nothing is read, blown
+   up where type sits on top.
+   ========================================================================== */
+
+/* --- Seam bands. Full strength, nothing readable near them. -------------- */
+.camo-seam {
+  height: 58px;
+  background: url('../images/camo-green-worms-600.png') repeat;
+  background-size: 520px auto;
+  filter: brightness(1.15);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+/* The tile repeats every 520px against a wider page, so without an offset the
+   neon worm lands at the same x on every strip and reads as a glitch. */
+.camo-seam--b { background-position: 173px 0; height: 46px; }
+.camo-seam--c { background-position: 347px 0; height: 70px; background-size: 610px auto; }
+.camo-seam--d { background-position: 96px 0;  height: 40px; background-size: 440px auto; }
+
+/* --- Light sections ------------------------------------------------------
+   Every component in this stylesheet already paints through the tokens, so
+   redefining the tokens on this one scope re-themes every child automatically.
+   That is why this is four rules and not four hundred. */
+.section-light {
+  --bg: var(--paper);
+  --bg-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fbfaf6;
+  --line: var(--paper-line);
+  --line-soft: #e7e4da;
+  --text: var(--paper-ink);
+  --text-soft: var(--paper-soft);
+  --text-muted: #6b736d;
+  --text-dim: #8c948e;
+  --accent: var(--accent-ink);
+  --accent-light: var(--accent-ink);
+  --green-light: var(--green-ink);
+  background: var(--paper);
+  color: var(--paper-ink);
+  border-top: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line);
+}
+
+/* A filled button is judged on its label, so the label turns white here. */
+.section-light .btn-primary { color: #fff; }
+.section-light .btn-primary:hover { background: #8e4715; border-color: #8e4715; color: #fff; }
+.section-light .btn-outline { color: var(--paper-ink); border-color: var(--paper-line); }
+.section-light .btn-outline:hover { border-color: var(--accent-ink); color: var(--accent-ink); }
+.section-light .service-card { box-shadow: 0 1px 2px rgba(20, 26, 22, .05); }
+
+/* --- Camo tiles behind the service icons --------------------------------
+   Micro-scale tile: the 600px tile squeezed into a 44px box gave one blob and
+   read as a smudge. This one is drawn so ~4 shapes land inside the chip. */
+.service-icon {
+  background: url('../images/camo-micro.png') repeat;
+  background-size: 64px auto;
+  border-color: var(--camo-light);
+  color: #e9b87a;
+}
+.service-card:nth-child(2n) .service-icon { background-position: 22px 14px; }
+.service-card:nth-child(3n) .service-icon { background-position: 9px 37px; }
+
+/* --- Closing CTA band: pattern wall to wall ------------------------------
+   The plate that used to sit here covered 95% of the tile and left the camo
+   as a 25px frame. Now the scrim sits on the pattern instead of hiding it:
+   the camo reads across the full band and the type still clears 12:1. */
+.cta-band {
+  position: relative;
+  background: url('../images/camo-green.png') repeat;
+  background-size: 1250px auto;
+  background-position: 620px 0;
+  border-top: 1px solid var(--camo-light);
+  border-bottom: 1px solid var(--camo-light);
+  isolation: isolate;
+}
+
+.cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(9, 15, 11, .55) 0%, rgba(9, 15, 11, .70) 100%);
+  z-index: -1;
+}
+
+.cta-band > .container { background: none; border: 0; padding: 0; }
+
+/* --- Footer: same treatment, one step heavier because the type is small --- */
+.site-footer {
+  position: relative;
+  background: url('../images/camo-green.png') repeat;
+  background-size: 900px auto;
+  background-position: 340px 0;
+  padding: 56px 0 24px;
+  isolation: isolate;
+}
+
+/* Three strengths, so the bottom of the page does not turn into one camo wall:
+   pattern (.cta-band), panel (.areas), texture (footer, header). */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 15, 11, .82);
+  z-index: -1;
+}
+
+.site-footer > .container { background: none; border: 0; padding: 0; }
+
+/* --- Service-areas band: was the least designed block on the page. Camo at
+       full size behind it turns a tag cloud into a deliberate panel. ------- */
+.areas {
+  position: relative;
+  background: url('../images/camo-green.png') repeat;
+  background-size: 1500px auto;
+  border-top: 1px solid var(--camo-light);
+  border-bottom: 1px solid var(--camo-light);
+  isolation: isolate;
+}
+
+.areas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 16, 12, .70);
+  z-index: -1;
+}
+
+/* --- Header: pattern at texture strength. Small enough that it reads as a
+       surface rather than a motif, so the nav stays the loudest thing. ----- */
+.site-header {
+  background-image: url('../images/camo-micro.png');
+  background-repeat: repeat;
+  background-size: 150px auto;
+  background-blend-mode: overlay;
+  background-color: rgba(11, 18, 14, 0.96);
+}
+
+/* --- Interior page banners: same pattern, blown up ~3x so a headline lands
+       on a single field of colour instead of straddling four edges. -------- */
+.page-hero {
+  background: url('../images/camo-green.png') repeat;
+  background-size: 2400px auto;
+}
+
+.page-hero::before {
+  background: linear-gradient(180deg, rgba(11, 18, 14, .74) 0%, rgba(11, 18, 14, .9) 100%);
+}
+
+/* --- Proof strip: the job photos that were sitting unused in /images/ ----- */
+.proof-strip { padding: 0 0 90px; background: var(--bg); }
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.proof-grid figure { margin: 0; }
+
+.proof-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.story-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 36px auto 0;
+  max-width: 760px;
+}
+
+.story-photos img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 1040px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .proof-grid { grid-template-columns: repeat(2, 1fr); }
+  .proof-grid img { height: 170px; }
+  .story-photos { grid-template-columns: 1fr; }
+  .camo-seam { height: 44px; background-size: 380px auto; }
+  .cta-band > .container, .site-footer > .container { padding: 28px 20px; }
 }
