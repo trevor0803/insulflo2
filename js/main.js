@@ -61,7 +61,11 @@ document.documentElement.classList.add('js');
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }
+      // threshold MUST stay 0. The whole article body is one .reveal element and
+      // runs 7,000-10,000px tall, so on a phone less than 12% of it can ever be
+      // on screen at once - a non-zero threshold never fires and the copy stays
+      // at opacity 0 permanently. Fire as soon as any part of it enters.
+      { threshold: 0, rootMargin: '0px 0px -50px 0px' }
     );
     revealEls.forEach((el) => io.observe(el));
   } else {
