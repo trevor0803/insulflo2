@@ -79,6 +79,8 @@ document.documentElement.classList.add('js');
   // Fields are read from within each form (form.elements) rather than by global
   // id — with several forms on one document, getElementById would always return
   // the first one's inputs and every page would submit the wrong values.
+  const pageReadyAt = Date.now();
+
   document.querySelectorAll('form.lead-form').forEach((form) => {
     const status = form.querySelector('.form-status');
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -96,6 +98,10 @@ document.documentElement.classList.add('js');
         message: val('message'),
         // Which page produced the lead, so it is attributable in the CRM note.
         page: window.location.pathname || '/',
+        // Spam signals, both re-checked server-side: the honeypot must stay
+        // empty, and a real person cannot fill this form in under 2.5 seconds.
+        company: val('company'),
+        elapsed: Date.now() - pageReadyAt,
       };
 
       if (!payload.phone && !payload.email) {

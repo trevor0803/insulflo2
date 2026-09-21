@@ -43,7 +43,29 @@ module.exports = async (req, res) => {
       service = '',
       message = '',
       page = '',
+      company = '',
+      elapsed = null,
     } = body;
+
+    // Spam gate. Three checks, all server-side.
+    //   1. Honeypot  - an off-screen input no human can see. Bots fill it.
+    //   2. Too fast  - nobody fills the form within 1.5s of the page loading.
+    //   3. No timing - the real form ALWAYS sends `elapsed`. A request without
+    //      it did not come from the form, which is how a script posting
+    //      straight at this endpoint would look. That is the common case for
+    //      form spam, and it slips past 1 and 2 because it sends neither field.
+    // All three return 200 so the sender believes it worked and does not
+    // retry, but nothing is written to GoHighLevel.
+    const spam =
+      String(company).trim() !== '' ||
+      typeof elapsed !== 'number' ||
+      !Number.isFinite(elapsed) ||
+      elapsed < 1500;
+
+    if (spam) {
+      res.status(200).json({ ok: true });
+      return;
+    }
 
     if (!phone && !email) {
       res.status(400).json({ error: 'Phone or email required' });

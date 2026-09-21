@@ -1736,3 +1736,15 @@ section { padding: 90px 0; }
   .lead-section .contact-form { padding: 24px 20px; }
   .lead-section .form-row { grid-template-columns: 1fr; }
 }
+
+/* Honeypot. Off-screen, hidden from assistive tech and skipped by the tab
+   order, so no real visitor ever sees or fills it. Bots fill every input they
+   find, so a non-empty value here is a reliable spam signal - checked on the
+   server, not just here. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
