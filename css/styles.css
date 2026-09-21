@@ -1466,20 +1466,20 @@ section { padding: 90px 0; }
    ========================================================================== */
 
 /* --- Seam bands. Full strength, nothing readable near them. -------------- */
+/* One camo band, directly under the hero.
+   A 58px strip cannot hold this pattern: at any tile size where whole shapes
+   fit that height, the shapes are small enough to read as filigree trim, and at
+   a size where they read as camo they get sliced top and bottom. Camo needs
+   area. So there is one band, tall enough to show complete shapes, at the point
+   of the page everyone sees - and the other four section dividers are gone. */
 .camo-seam {
-  height: 58px;
-  background: url('../images/camo-green-worms-600.png') repeat;
-  background-size: 520px auto;
-  filter: brightness(1.15);
+  height: 130px;
+  background: url('../images/camo-green.png') repeat;
+  background-size: 360px auto;
+  filter: brightness(1.12);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-
-/* The tile repeats every 520px against a wider page, so without an offset the
-   neon worm lands at the same x on every strip and reads as a glitch. */
-.camo-seam--b { background-position: 173px 0; height: 46px; }
-.camo-seam--c { background-position: 347px 0; height: 70px; background-size: 610px auto; }
-.camo-seam--d { background-position: 96px 0;  height: 40px; background-size: 440px auto; }
 
 /* --- Light sections ------------------------------------------------------
    Every component in this stylesheet already paints through the tokens, so
@@ -1662,6 +1662,6 @@ section { padding: 90px 0; }
   .proof-grid img { height: 170px; }
   .story-photos { grid-template-columns: 1fr; }
   .story-photos img { height: 300px; }
-  .camo-seam { height: 44px; background-size: 380px auto; }
+  .camo-seam { height: 84px; background-size: 230px auto; }
   .cta-band > .container, .site-footer > .container { padding: 28px 20px; }
 }
