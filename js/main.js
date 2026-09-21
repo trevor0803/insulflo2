@@ -72,28 +72,42 @@ document.documentElement.classList.add('js');
     revealEls.forEach((el) => el.classList.add('visible'));
   }
 
-  // Contact form → GoHighLevel (via /api/lead serverless function)
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    const status = contactForm.querySelector('.form-status');
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const val = (id) => (document.getElementById(id)?.value || '').trim();
+  // Lead forms → GoHighLevel (via the /api/lead serverless function).
+  //
+  // This binds EVERY form carrying .lead-form, not a single element id, because
+  // the same form now appears on the service and city pages as well as /contact.
+  // Fields are read from within each form (form.elements) rather than by global
+  // id — with several forms on one document, getElementById would always return
+  // the first one's inputs and every page would submit the wrong values.
+  document.querySelectorAll('form.lead-form').forEach((form) => {
+    const status = form.querySelector('.form-status');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const val = (n) => (form.elements[n]?.value || '').trim();
 
-    contactForm.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      status.classList.remove('success', 'error');
+      if (status) { status.classList.remove('success', 'error'); status.textContent = ''; }
 
       const payload = {
         name: val('name'),
         phone: val('phone'),
         email: val('email'),
-        service: document.getElementById('service')?.value || '',
+        service: val('service'),
         message: val('message'),
+        // Which page produced the lead, so it is attributable in the CRM note.
+        page: window.location.pathname || '/',
       };
 
-      const originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
+      if (!payload.phone && !payload.email) {
+        if (status) {
+          status.classList.add('error');
+          status.textContent = 'Please add a phone number or an email so we can reach you.';
+        }
+        return;
+      }
+
+      const originalText = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
 
       try {
         const r = await fetch('/api/lead', {
@@ -102,18 +116,21 @@ document.documentElement.classList.add('js');
           body: JSON.stringify(payload),
         });
         if (!r.ok) throw new Error('Request failed');
-        status.classList.add('success');
-        status.textContent = "Thanks! We got your request and will reach out the same business day.";
-        contactForm.reset();
+        if (status) {
+          status.classList.add('success');
+          status.textContent = "Thanks! We got your request and will reach out the same business day.";
+        }
+        form.reset();
       } catch (err) {
-        status.classList.add('error');
-        status.textContent = "Sorry — something went wrong. Please call us at (863) 251-2991 and we'll help right away.";
+        if (status) {
+          status.classList.add('error');
+          status.textContent = "Sorry — something went wrong. Please call us at (863) 251-2991 and we'll help right away.";
+        }
       } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
       }
     });
-  }
+  });
 
   // Year in footer
   const yearEl = document.getElementById('current-year');

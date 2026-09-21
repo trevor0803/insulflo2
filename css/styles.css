@@ -1697,3 +1697,42 @@ section { padding: 90px 0; }
 @media (max-width: 860px) {
   .service-card--wide { grid-column: span 1; }
 }
+
+/* ---------------------------------------------------------------------------
+   Inline lead form (service + city pages).
+   The form used to live only on /contact, so every other page could do no more
+   than send people there. It reuses .contact-form and the generic .form-field
+   styles, and sits inside .section-light so it reads as a distinct, brighter
+   block at the end of the page.
+   --------------------------------------------------------------------------- */
+.lead-section { padding: 90px 0; }
+
+.lead-panel {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.lead-copy h2 { margin: 10px 0 14px; }
+.lead-copy p { color: var(--text-soft); margin: 0 0 14px; }
+.lead-call { font-size: 0.95rem; }
+.lead-call a { color: var(--accent); font-weight: 600; }
+
+.lead-section .contact-form { padding: 32px; }
+.lead-section .form-field label .opt {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.lead-section .btn-primary { width: 100%; justify-content: center; }
+
+@media (max-width: 860px) {
+  .lead-section { padding: 64px 0; }
+  .lead-panel { grid-template-columns: 1fr; gap: 28px; }
+  .lead-section .contact-form { padding: 24px 20px; }
+  .lead-section .form-row { grid-template-columns: 1fr; }
+}

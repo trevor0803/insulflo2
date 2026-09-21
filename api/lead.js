@@ -42,6 +42,7 @@ module.exports = async (req, res) => {
       email = '',
       service = '',
       message = '',
+      page = '',
     } = body;
 
     if (!phone && !email) {
@@ -82,6 +83,7 @@ module.exports = async (req, res) => {
     // Attach the service + project details as a readable note.
     const details = [
       service && `Service: ${service}`,
+      page && `Page: ${page}`,
       message && `Message: ${message}`,
     ]
       .filter(Boolean)
