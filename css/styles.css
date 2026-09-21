@@ -999,9 +999,13 @@ section { padding: 90px 0; }
   background: var(--bg);
 }
 
+/* This grid sits straight inside .contact-section with no .container around
+   it, so it had no side padding at all - on a phone the heading and body copy
+   ran flush to both screen edges. Match the container's 24px gutter. */
 .contact-grid {
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 24px;
   display: grid;
   grid-template-columns: 1fr 1.3fr;
   gap: 64px;
@@ -1205,13 +1209,18 @@ section { padding: 90px 0; }
   .page-banner-img--family { max-height: 480px; }
 }
 
-@media (max-width: 720px) {
-  .utility-bar { padding: 8px 0; font-size: 0.74rem; }
-  .utility-bar .container { justify-content: center; }
-  .utility-bar .utility-item:last-child { display: none; }
 
+/* ---------------------------------------------------------------------------
+   Nav collapse.
+   The desktop nav stops fitting at about 1000px but only collapsed to the
+   burger at 720px, so every page on the site scrolled sideways between roughly
+   740px and 980px - iPad portrait, iPad Air, landscape phones, split-screen
+   laptops - with the Free Estimate button hanging off the right edge. The links
+   now collapse at 1023px. The Free Estimate button stays visible down to 720px,
+   where the sticky call bar takes over.
+   --------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
   .nav-links { display: none; }
-  .nav-cta { display: none; }
   .nav-toggle { display: inline-flex; }
 
   .nav-links.open {
@@ -1244,6 +1253,14 @@ section { padding: 90px 0; }
   }
 
   .nav-links .dropdown-caret { display: none; }
+}
+
+@media (max-width: 720px) {
+  .utility-bar { padding: 8px 0; font-size: 0.74rem; }
+  .utility-bar .container { justify-content: center; }
+  .utility-bar .utility-item:last-child { display: none; }
+
+  .nav-cta { display: none; }
 
   .mobile-call { display: flex; }
   body { padding-bottom: 72px; }
@@ -1664,4 +1681,19 @@ section { padding: 90px 0; }
   .story-photos img { height: 300px; }
   .camo-seam { height: 84px; background-size: 230px auto; }
   .cta-band > .container, .site-footer > .container { padding: 28px 20px; }
+}
+
+/* Seven services + the "not sure" card = 8 cards in a 3-column grid, which
+   leaves one empty cell on the last row. The CTA card spans it instead, so the
+   row closes and the strongest call to action gets the widest card. */
+.service-card--wide { grid-column: span 2; }
+
+/* At two columns the wide card would span the whole row and leave Metal
+   Buildings orphaned above it, so it drops back to one column here. */
+@media (max-width: 1040px) {
+  .service-card--wide { grid-column: span 1; }
+}
+
+@media (max-width: 860px) {
+  .service-card--wide { grid-column: span 1; }
 }
