@@ -63,6 +63,18 @@ module.exports = async (req, res) => {
       elapsed < 1500;
 
     if (spam) {
+      // Diagnostic only, no PII. The gate returns 200 whether it blocked a bot or
+      // wrongly caught a real visitor, so without this line a false positive is
+      // invisible to the visitor, to GoHighLevel and to the weekly health check.
+      const reason =
+        String(company).trim() !== ''
+          ? 'honeypot'
+          : typeof elapsed !== 'number' || !Number.isFinite(elapsed)
+          ? 'no-timing'
+          : 'too-fast';
+      console.log(
+        `[lead] BLOCKED reason=${reason} elapsed=${elapsed} page=${page} hasPhone=${!!phone} hasEmail=${!!email}`
+      );
       res.status(200).json({ ok: true });
       return;
     }
@@ -119,6 +131,7 @@ module.exports = async (req, res) => {
       }).catch(() => {});
     }
 
+    console.log(`[lead] ACCEPTED page=${page} service=${service}`);
     res.status(200).json({ ok: true });
   } catch (e) {
     res.status(500).json({ error: e.message });
