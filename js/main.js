@@ -122,6 +122,8 @@ document.documentElement.classList.add('js');
           body: JSON.stringify(payload),
         });
         if (!r.ok) throw new Error('Request failed');
+        // Meta: count a Lead only for a real submission (honeypot empty)
+        if (window.fbq && !payload.company) fbq('track', 'Lead', { content_name: payload.service || 'Website form' });
         if (status) {
           status.classList.add('success');
           status.textContent = "Thanks! We got your request and will reach out the same business day.";
@@ -136,6 +138,12 @@ document.documentElement.classList.add('js');
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
       }
     });
+  });
+
+  // Meta: phone taps/clicks count as Contact
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a && window.fbq) fbq('track', 'Contact');
   });
 
   // Year in footer
